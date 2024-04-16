@@ -16,7 +16,7 @@ func NewRouter() http.Handler {
 	r.Use(middleware.Logger)
 	r.Get("/", handlers.RootHandler)
 
-	randomRouter := random.NewRouter()
+	randomRouter := random.Router()
 	r.Mount("/", randomRouter)
 	return r
 }

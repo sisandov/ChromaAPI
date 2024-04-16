@@ -9,7 +9,7 @@ import (
 
 
 
-func NewRouter() http.Handler { 
+func Router() http.Handler { 
 	r := chi.NewRouter()
 	r.Get("/random", handlers.RandomHandler)
 	return r
