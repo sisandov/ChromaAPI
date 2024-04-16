@@ -19,7 +19,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 
 const totalNumbers = 255
 
-func generateRandomRGBNumber() int64 {
+func GenerateRandomRGBNumber() int64 {
 	return int64(rand.IntN(totalNumbers))
 }
 
@@ -35,22 +35,22 @@ func CommonResponse(w http.ResponseWriter, r *http.Request, jsonResponse map[str
 	w.Write(jsonResponseBytes)
 }
 
-func generateRandomHex() string {
-	generatedHexNumber := strings.ToUpper(strconv.FormatInt(generateRandomRGBNumber(), 16))
+func GenerateRandomHex() string {
+	generatedHexNumber := strings.ToUpper(strconv.FormatInt(GenerateRandomRGBNumber(), 16))
 	return strings.Repeat("0", 2-len(generatedHexNumber)) + generatedHexNumber
 }
 
 func RandomHEXHandler(w http.ResponseWriter, r *http.Request) {
 	jsonResponse := map[string]string{
-		"color": fmt.Sprintf("#%s%s%s", generateRandomHex(), generateRandomHex(), generateRandomHex()),
+		"color": fmt.Sprintf("#%s%s%s", GenerateRandomHex(), GenerateRandomHex(), GenerateRandomHex()),
 	}
 	CommonResponse(w, r, jsonResponse)
 }
 
 func RandomRGBHandler(w http.ResponseWriter, r *http.Request) {
-	red := fmt.Sprint(generateRandomRGBNumber())
-	green := fmt.Sprint(generateRandomRGBNumber())
-	blue := fmt.Sprint(generateRandomRGBNumber())
+	red := fmt.Sprint(GenerateRandomRGBNumber())
+	green := fmt.Sprint(GenerateRandomRGBNumber())
+	blue := fmt.Sprint(GenerateRandomRGBNumber())
 
 	jsonResponse := map[string]string{
 		"color": fmt.Sprintf("(%s, %s, %s)", red, green, blue),

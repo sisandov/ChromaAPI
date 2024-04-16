@@ -1,7 +1,25 @@
 # ChromaAPI
-First install air: 
-```go install github.com/cosmtrek/air@latest```
-Adjust dependencies:
-```go mod tidy```
-Run the project:
-```air```
+
+## Setup and commands
+
+First install air:
+
+`go install github.com/cosmtrek/air@latest`
+
+### Adjust dependencies:
+
+`go mod tidy`
+
+### Run the project:
+
+`air`
+
+### Testing
+
+The files that are tested ends with `_test.go`
+
+`go test` (This maybe dont find the files)
+
+If you want to test a folder recursively use
+
+`go test -v ./handlers`
