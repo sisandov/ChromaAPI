@@ -11,7 +11,7 @@ import (
 
 
 
-func NewRouter() http.Handler { 
+func Router() http.Handler { 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/", handlers.RootHandler)
