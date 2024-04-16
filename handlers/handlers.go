@@ -21,3 +21,20 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(http.StatusOK)
     w.Write(jsonResponseBytes)
 }
+
+func RandomHandler(w http.ResponseWriter, r *http.Request) {
+    jsonResponse := map[string]string{
+        "message": "Generating random color...",
+    }
+
+    jsonResponseBytes, err := json.Marshal(jsonResponse)
+    if err != nil {
+        http.Error(w, "Internal server error", http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+
+    w.WriteHeader(http.StatusOK)
+    w.Write(jsonResponseBytes)
+}
