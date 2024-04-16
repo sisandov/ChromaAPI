@@ -37,4 +37,3 @@ Run the image:
 Or run in detached mode:
 
 ```docker run -d --rm -p 3333:3333 chroma-api```
-
