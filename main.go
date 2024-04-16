@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	r:= router.NewRouter()
+	r:= router.Router()
 	http.ListenAndServe(":3333", r)
 }
