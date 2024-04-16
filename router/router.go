@@ -2,6 +2,7 @@ package router
 
 import (
 	"chroma-api/handlers"
+	"chroma-api/router/random"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -12,9 +13,10 @@ import (
 
 func NewRouter() http.Handler { 
 	r := chi.NewRouter()
-	r.Use(middleware.RequestID)
 	r.Use(middleware.Logger)
-	r.Use(middleware.Recoverer)
 	r.Get("/", handlers.RootHandler)
+
+	randomRouter := random.NewRouter()
+	r.Mount("/", randomRouter)
 	return r
 }
