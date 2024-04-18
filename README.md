@@ -32,8 +32,4 @@ Build the image:
 
 Run the image:
 
-```docker run --rm -p 3333:3333 chroma-api```
-
-Or run in detached mode:
-
-```docker run -d --rm -p 3333:3333 chroma-api```
+```docker-compose up```

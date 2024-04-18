@@ -1,0 +1,7 @@
+services:
+  app:
+    image: chroma-api
+    volumes:
+      - ./:/app
+    ports:
+      - 3333:3333

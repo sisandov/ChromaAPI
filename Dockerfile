@@ -1,15 +1,14 @@
 FROM golang:1.22-bookworm
 
-WORKDIR /usr/src/app
+RUN mkdir /app
+WORKDIR /app
+ADD . /app
 
-# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 RUN go install github.com/cosmtrek/air@latest
-RUN air init
 
-COPY . .
 
 EXPOSE 3333
 
-CMD ["air"]
+ENTRYPOINT air
