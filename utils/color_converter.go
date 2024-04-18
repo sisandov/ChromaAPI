@@ -11,7 +11,7 @@ import (
 )
 
 func ParseRGB(rgbRaw string) []string {
-	re := regexp.MustCompile(`\(|\)|rgb|RGB`)
+	re := regexp.MustCompile(`\(|\)|rgb|RGB|\s`)
 	parsedRGBColor := re.ReplaceAllString(rgbRaw, "")
 	return strings.SplitN(parsedRGBColor, ",", 3)
 }
