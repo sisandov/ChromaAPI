@@ -1,6 +1,9 @@
 services:
   app:
-    image: chroma-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: chroma-api:latest
     volumes:
       - ./:/app
     ports:

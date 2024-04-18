@@ -26,10 +26,6 @@ If you want to test a folder recursively use
 
 ### Docker
 
-Build the image:
-
-```docker build -t chroma-api .```
-
-Run the image:
+Run the project:
 
 ```docker-compose up```
