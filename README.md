@@ -29,3 +29,7 @@ If you want to test a folder recursively use
 Run the project:
 
 ```docker-compose up```
+
+### API Authentication
+
+Make a .env file following the .env_sample format.
