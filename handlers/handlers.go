@@ -36,7 +36,11 @@ func CommonResponse(w http.ResponseWriter, r *http.Request, jsonResponse map[str
 }
 
 func GenerateRandomHex() string {
-	generatedHexNumber := strings.ToUpper(strconv.FormatInt(GenerateRandomRGBNumber(), 16))
+	return NumberToHex(GenerateRandomRGBNumber())
+}
+
+func NumberToHex(num int64) string {
+	generatedHexNumber := strings.ToUpper(strconv.FormatInt(num, 16))
 	return strings.Repeat("0", 2-len(generatedHexNumber)) + generatedHexNumber
 }
 
