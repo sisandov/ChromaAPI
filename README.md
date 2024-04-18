@@ -1,8 +1,15 @@
 # ChromaAPI
 
+
 ## Setup and commands
 
-First install air:
+### API Authentication
+
+Make a .env file following the .env_sample format.
+
+### Hot swap
+
+Install air:
 
 `go install github.com/cosmtrek/air@latest`
 
@@ -30,6 +37,3 @@ Run the project:
 
 ```docker-compose up```
 
-### API Authentication
-
-Make a .env file following the .env_sample format.
