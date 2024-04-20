@@ -16,6 +16,12 @@ func ParseRGB(rgbRaw string) []string {
 	return strings.SplitN(parsedRGBColor, ",", 3)
 }
 
+func ParseHSL(hslRaw string) []string {
+	re := regexp.MustCompile(`\(|\)|hsl|HSL|\s`)
+	parsedHSLColor := re.ReplaceAllString(hslRaw, "")
+	return strings.SplitN(parsedHSLColor, ",", 3)
+}
+
 func RGBToHEX(rgbColor string) (string, error) {
 	uniqueColors := ParseRGB(rgbColor)
 	if len(uniqueColors) != 3 {
@@ -125,4 +131,68 @@ func HEXToHSL(HEXColor string) (string, error) {
 	}
 
 	return hslColor, nil
+}
+
+func HSLToRGB(HSLColor string) (string, error) {
+	parsedHSL := ParseHSL(HSLColor)
+	hue, hueError := strconv.ParseFloat(parsedHSL[0], 64)
+	saturation, saturationError := strconv.ParseFloat(parsedHSL[1], 64)
+	lightness, lightnessError := strconv.ParseFloat(parsedHSL[2], 64)
+
+	if hueError != nil || saturationError != nil || lightnessError != nil {
+		return "", fmt.Errorf("error in values of hsl %s %s %s", hueError, saturationError, lightnessError)
+	}
+	var red, green, blue float64
+
+	hueNormalized := hue / 360
+
+	if saturation == 0 {
+		red = lightness
+		green = lightness
+		blue = lightness
+	} else {
+		var q float64
+		if lightness < 0.5 {
+			q = lightness * (1 + saturation)
+		} else {
+			q = lightness + saturation - lightness*saturation
+		}
+		p := 2*lightness - q
+		red = ParseHSLSingleColor(p, q, hueNormalized+float64(1)/3)
+		green = ParseHSLSingleColor(p, q, float64(hueNormalized))
+		blue = ParseHSLSingleColor(p, q, hueNormalized-float64(1)/3)
+	}
+
+	return fmt.Sprintf("rgb(%.0f,%.0f,%.0f)", red*255, green*255, blue*255), nil
+}
+
+func ParseHSLSingleColor(p, q, t float64) float64 {
+	switch {
+	case t < 0:
+		t += 1
+	case t > 1:
+		t -= 1
+	}
+
+	switch {
+	case t < float64(1)/6:
+		return p + (q-p)*6*t
+	case t < float64(1)/2:
+		return q
+	case t < float64(2)/3:
+		return p + (q-p)*(float64(2)/3-t)*6
+	}
+	return p
+}
+
+func HSLToHEX(HSLColor string) (string, error) {
+	rgbColor, rgbColorError := HSLToRGB(HSLColor)
+	if rgbColorError != nil {
+		return "", fmt.Errorf("error parsing the HSL Color to HSL: %s", rgbColorError)
+	}
+
+	println("HELLO")
+	println(rgbColor)
+
+	return RGBToHEX(rgbColor)
 }
