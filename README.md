@@ -22,11 +22,11 @@ Install air:
 
 ## CI/CD
 
-| Command                | Description                                              |
-| ---------------------- | -------------------------------------------------------- |
-| `go test -v`           | Run all test on `_test.go` files recursively             |
-| `go test -v ./utils`   | Run all test on `_test.go` files recursively in a folder |
-| `go golangci-lint run` | Run the linter for golang                                |
+| Command              | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| `go test -v`         | Run all test on `_test.go` files recursively             |
+| `go test -v ./utils` | Run all test on `_test.go` files recursively in a folder |
+| `golangci-lint run`  | Run the linter for golang                                |
 
 #### For testing be sure that you have installed the linter
 
