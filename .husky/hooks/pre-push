@@ -1,6 +1,6 @@
 #!/bin/sh
 
-go golangci-lint run
+golangci-lint run
 
 go test -v ./handlers
 go test -v ./utils
