@@ -1,6 +1,5 @@
 # ChromaAPI
 
-
 ## Setup and commands
 
 ### API Authentication
@@ -21,19 +20,28 @@ Install air:
 
 `air`
 
-### Testing
+## CI/CD
 
-The files that are tested ends with `_test.go`
+| Command                | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| `go test -v`           | Run all test on `_test.go` files recursively             |
+| `go test -v ./utils`   | Run all test on `_test.go` files recursively in a folder |
+| `go golangci-lint run` | Run the linter for golang                                |
 
-`go test` (This maybe dont find the files)
+#### For testing be sure that you have installed the linter
 
-If you want to test a folder recursively use
+You can install this with:
 
-`go test -v ./handlers`
+`curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.57.2"`
+
+#### Husky
+
+Install husky cli tool with
+
+`go install github.com/automation-co/husky@latest`
 
 ### Docker
 
 Run the project:
 
-```docker-compose up```
-
+`docker-compose up`
