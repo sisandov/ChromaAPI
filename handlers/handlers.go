@@ -32,7 +32,10 @@ func CommonResponse(w http.ResponseWriter, r *http.Request, jsonResponse map[str
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write(jsonResponseBytes)
+	_, ResponseError := w.Write(jsonResponseBytes)
+	if ResponseError != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
 }
 
 func GenerateRandomHex() string {

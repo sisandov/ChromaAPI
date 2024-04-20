@@ -94,7 +94,7 @@ func RGBToHSL(rgbColor string) (string, error) {
 	}
 
 	// Wheel tree
-	var hue float64 = 0
+	var hue float64
 
 	if saturation == 0 {
 		hue = 0
