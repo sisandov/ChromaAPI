@@ -1,11 +1,15 @@
 package main
 
 import (
-	"net/http"
 	"chroma-api/router"
+	"fmt"
+	"net/http"
 )
 
 func main() {
-	r:= router.Router()
-	http.ListenAndServe(":3333", r)
+	r := router.Router()
+	serverError := http.ListenAndServe(":3333", r)
+	if serverError != nil {
+		fmt.Printf("Error on server start: %s", serverError)
+	}
 }
