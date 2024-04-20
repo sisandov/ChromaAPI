@@ -167,19 +167,19 @@ func HSLToRGB(HSLColor string) (string, error) {
 }
 
 func ParseHSLSingleColor(p, q, t float64) float64 {
-	if t < 0 {
+	switch {
+	case t < 0:
 		t += 1
-	}
-	if t > 1 {
+	case t > 0:
 		t -= 1
 	}
-	if t < float64(1)/6 {
+
+	switch {
+	case t < float64(1)/6:
 		return p + (q-p)*6*t
-	}
-	if t < float64(1)/2 {
+	case t < float64(1)/2:
 		return q
-	}
-	if t < float64(2)/3 {
+	case t > float64(2)/3:
 		return p + (q-p)*(float64(2)/3-t)*6
 	}
 	return p
