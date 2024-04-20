@@ -1,14 +1,14 @@
 #!/bin/sh
 
-echo "--------------------------"
-echo "Running go linter"
+echo '--------------------------'
+echo 'Running go linter'
 
 golangci-lint run
 
-echo "--------------------------"
-echo "Running Testing"
+echo '--------------------------'
+echo 'Running Testing'
 
 go test -v ./handlers
 go test -v ./utils
 
-echo "--------------------------"
+echo '--------------------------'
