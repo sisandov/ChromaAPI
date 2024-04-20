@@ -46,3 +46,19 @@ func TestParseRGB(t *testing.T) {
 
 	println(fmt.Sprintf("%v", rgbSlice))
 }
+
+func TestParseHSLToRGB(t *testing.T) {
+	hslExample, hslError := color_converter.HSLToRGB("hsl(204,0.5,0.3)")
+	if hslError != nil {
+		t.Fatalf("Error on test %s", hslError.Error())
+	}
+	println(hslExample)
+}
+
+func TestParseHSLToHEX(t *testing.T) {
+	hexColor, hexColorError := color_converter.HSLToHEX("hsl(204,0.5,0.3)")
+	if hexColorError != nil {
+		t.Fatalf("Error on test %s", hexColorError.Error())
+	}
+	println(hexColor)
+}
