@@ -170,7 +170,7 @@ func ParseHSLSingleColor(p, q, t float64) float64 {
 	switch {
 	case t < 0:
 		t += 1
-	case t > 0:
+	case t > 1:
 		t -= 1
 	}
 
@@ -179,7 +179,7 @@ func ParseHSLSingleColor(p, q, t float64) float64 {
 		return p + (q-p)*6*t
 	case t < float64(1)/2:
 		return q
-	case t > float64(2)/3:
+	case t < float64(2)/3:
 		return p + (q-p)*(float64(2)/3-t)*6
 	}
 	return p
@@ -190,6 +190,9 @@ func HSLToHEX(HSLColor string) (string, error) {
 	if rgbColorError != nil {
 		return "", fmt.Errorf("error parsing the HSL Color to HSL: %s", rgbColorError)
 	}
+
+	println("HELLO")
+	println(rgbColor)
 
 	return RGBToHEX(rgbColor)
 }
